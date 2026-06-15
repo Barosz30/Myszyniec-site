@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+/* Dark mode sterowany klasą .dark na <html> (przełącznik + zapamiętanie wyboru). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Paleta inspirowana naturą Kurpiowszczyzny: zieleń puszczy, błękit nieba, ciepły bursztyn */
+  --background: #f7faf6;
+  --surface: #ffffff;
+  --surface-muted: #eef3ec;
+  --foreground: #15231a;
+  --muted-foreground: #4b5d52;
+  --border: #d9e4d6;
+
+  --primary: #2f7a4d; /* zieleń lasu */
+  --primary-strong: #1f5c39;
+  --primary-foreground: #ffffff;
+
+  --accent: #e0922f; /* ciepły bursztyn */
+  --accent-foreground: #2a1a05;
+
+  --sky: #2f7fb5; /* błękit */
+  --danger: #c0392b;
+  --warning: #d98a00;
+}
+
+.dark {
+  --background: #0e1512;
+  --surface: #16201b;
+  --surface-muted: #1d2a23;
+  --foreground: #e8f0e9;
+  --muted-foreground: #a8bcae;
+  --border: #2a3a30;
+
+  --primary: #4aa56e;
+  --primary-strong: #6cc08c;
+  --primary-foreground: #06140c;
+
+  --accent: #f0aa4d;
+  --accent-foreground: #221603;
+
+  --sky: #5aa9d8;
+  --danger: #e16259;
+  --warning: #efb24a;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-foreground: var(--foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-sky: var(--sky);
+  --color-danger: var(--danger);
+  --color-warning: var(--warning);
+
+  --font-sans: var(--font-sans-custom), system-ui, sans-serif;
+
+  --radius-card: 1rem;
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Lepsza widoczność focusu dla dostępności */
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Styl treści renderowanej z Markdown */
+.prose-content {
+  line-height: 1.75;
+}
+.prose-content h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--foreground);
+}
+.prose-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.prose-content p {
+  margin-bottom: 1rem;
+  color: var(--muted-foreground);
+}
+.prose-content ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--muted-foreground);
+}
+.prose-content ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--muted-foreground);
+}
+.prose-content li {
+  margin-bottom: 0.35rem;
+}
+.prose-content a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.prose-content blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--muted-foreground);
+  margin: 1.25rem 0;
+}
+.prose-content strong {
+  color: var(--foreground);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
