@@ -36,7 +36,7 @@ kultury i gwary kurpiowskiej. *Witôjcie u nôs!*
 
 ## 🚀 Uruchomienie lokalne
 
-Wymagania: **Node.js 18.18+** (zalecane 20+) oraz **Yarn** (Classic / v1).
+Wymagania: **Node.js 20.9+** (wymagane przez Next.js 16) oraz **Yarn** (Classic / v1).
 Projekt korzysta z menedżera **yarn** (lockfile: `yarn.lock`).
 
 ```bash

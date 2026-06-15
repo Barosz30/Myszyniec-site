@@ -52,27 +52,40 @@ export function getNewsSlugs(): string[] {
 
 export function getAllNews(): NewsListItem[] {
   return listNewsSlugs()
-    .map((slug) => {
-      const fullPath = path.join(NEWS_DIR, `${slug}.md`);
-      const fileContents = fs.readFileSync(fullPath, "utf8");
-      const { data } = matter(fileContents);
-      return { slug, ...(data as NewsFrontmatter) };
+    .map((slug): NewsListItem | null => {
+      try {
+        const fullPath = path.join(NEWS_DIR, `${slug}.md`);
+        const fileContents = fs.readFileSync(fullPath, "utf8");
+        const { data } = matter(fileContents);
+        return { slug, ...(data as NewsFrontmatter) };
+      } catch (error) {
+        // Jeden wadliwy plik (np. błąd we frontmatter) nie może wywrócić całej
+        // listy newsów, strony głównej ani sitemapy — pomijamy go i logujemy.
+        console.error(`[content] Pomijam wadliwy news ${slug}.md:`, error);
+        return null;
+      }
     })
+    .filter((item): item is NewsListItem => item !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
   const fullPath = path.join(NEWS_DIR, `${slug}.md`);
   if (!fs.existsSync(fullPath)) return null;
-  const fileContents = fs.readFileSync(fullPath, "utf8");
-  const { data, content } = matter(fileContents);
-  const html = await markdownToHtml(content);
-  return {
-    slug,
-    ...(data as NewsFrontmatter),
-    html,
-    readingTimeMin: estimateReadingTime(content),
-  };
+  try {
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data, content } = matter(fileContents);
+    const html = await markdownToHtml(content);
+    return {
+      slug,
+      ...(data as NewsFrontmatter),
+      html,
+      readingTimeMin: estimateReadingTime(content),
+    };
+  } catch (error) {
+    console.error(`[content] Nie udało się wczytać newsa ${slug}.md:`, error);
+    return null;
+  }
 }
 
 export async function getAboutContent(): Promise<{

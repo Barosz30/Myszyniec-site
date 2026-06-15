@@ -42,6 +42,21 @@ describe("news content", () => {
   it("returns null for an unknown slug", async () => {
     expect(await getNewsBySlug("nie-istnieje-xyz")).toBeNull();
   });
+
+  it("skips a single malformed markdown file instead of crashing the list", () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const realRead = fs.readFileSync.bind(fs);
+    vi.spyOn(fs, "readFileSync").mockImplementation(((p: string, enc: unknown) => {
+      // Wstrzykujemy uszkodzony frontmatter dla pierwszego pliku
+      if (String(p).endsWith(".md")) {
+        return "---\n: : bad yaml\n: :\n---\nTreść" as unknown as string;
+      }
+      return realRead(p as string, enc as never);
+    }) as typeof fs.readFileSync);
+
+    expect(() => getAllNews()).not.toThrow();
+    vi.restoreAllMocks();
+  });
 });
 
 describe("about content", () => {
