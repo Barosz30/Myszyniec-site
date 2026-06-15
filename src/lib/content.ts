@@ -86,8 +86,29 @@ export function getEvents(): EventItem[] {
   return [...events].sort((a, b) => (a.start < b.start ? -1 : 1));
 }
 
-function eventEndTime(e: EventItem): number {
-  return e.end ? new Date(e.end).getTime() : new Date(e.start).getTime();
+const warsawClockParts = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/Warsaw",
+  hourCycle: "h23",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+});
+
+const MS_PER_DAY = 24 * 60 * 60 * 1000;
+
+/**
+ * Moment zakończenia wydarzenia (epoch ms). Gdy brak pola `end`, wydarzenie
+ * pozostaje „nadchodzące" do końca dnia jego rozpoczęcia (wg strefy Europe/Warsaw),
+ * a nie znika zaraz po godzinie startu.
+ */
+export function eventEndTime(e: EventItem): number {
+  if (e.end) return new Date(e.end).getTime();
+  const start = new Date(e.start);
+  const parts = warsawClockParts.formatToParts(start);
+  const get = (type: string) =>
+    Number(parts.find((p) => p.type === type)?.value ?? "0");
+  const msIntoDay = ((get("hour") * 60 + get("minute")) * 60 + get("second")) * 1000;
+  return start.getTime() + (MS_PER_DAY - msIntoDay);
 }
 
 export function getUpcomingEvents(limit?: number): EventItem[] {

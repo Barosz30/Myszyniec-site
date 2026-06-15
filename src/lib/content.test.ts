@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  eventEndTime,
   getAboutContent,
   getAllNews,
   getEvents,
@@ -9,6 +10,7 @@ import {
   getRegionData,
   getUpcomingEvents,
 } from "./content";
+import type { EventItem } from "./types";
 
 describe("news content", () => {
   it("lists news slugs", () => {
@@ -68,6 +70,25 @@ describe("events", () => {
   it("respects the limit argument for upcoming events", () => {
     const limited = getUpcomingEvents(1);
     expect(limited.length).toBeLessThanOrEqual(1);
+  });
+});
+
+describe("eventEndTime", () => {
+  it("uses the explicit end time when provided", () => {
+    const e: EventItem = {
+      id: "x",
+      title: "x",
+      start: "2026-08-23T11:00:00+02:00",
+      end: "2026-08-23T20:00:00+02:00",
+    };
+    expect(eventEndTime(e)).toBe(new Date(e.end!).getTime());
+  });
+
+  it("keeps an end-less event alive until the end of its start day (Warsaw)", () => {
+    // 11:00 czasu warszawskiego → do północy zostaje 13 godzin
+    const e: EventItem = { id: "x", title: "x", start: "2026-08-23T11:00:00+02:00" };
+    const diffHours = (eventEndTime(e) - new Date(e.start).getTime()) / 3_600_000;
+    expect(diffHours).toBeCloseTo(13, 5);
   });
 });
 

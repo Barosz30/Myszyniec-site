@@ -4,6 +4,10 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { EventCard } from "@/components/EventCard";
 import { getPastEvents, getUpcomingEvents } from "@/lib/content";
 
+// Podział na nadchodzące/minione zależy od bieżącego czasu, więc odświeżamy
+// stronę co 30 minut (inaczej klasyfikacja zamarłaby do następnego buildu).
+export const revalidate = 1800;
+
 export const metadata: Metadata = {
   title: "Wydarzenia w Myszyńcu",
   description:
