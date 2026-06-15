@@ -124,4 +124,43 @@ describe("resilience to corrupt content files", () => {
     expect(region.emergency).toEqual([]);
     expect(region.alerts).toEqual([]);
   });
+
+  it("returns a safe fallback for syntactically valid but wrong-shape JSON", () => {
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    // Poprawny JSON, ale nie tablica / nie obiekt o oczekiwanym kształcie
+    vi.spyOn(fs, "readFileSync").mockReturnValue("null" as never);
+
+    expect(getEvents()).toEqual([]);
+    const region = getRegionData();
+    expect(region.emergency).toEqual([]);
+    expect(region.roadNotices).toEqual([]);
+    expect(region.health).toEqual([]);
+  });
+});
+
+describe("markdown sanitization (XSS protection)", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("strips scripts, event handlers and javascript: links from rendered HTML", async () => {
+    const malicious = [
+      "# Tytuł",
+      "",
+      "<script>alert('xss')</script>",
+      "",
+      "[zły link](javascript:alert(1))",
+      "",
+      "<img src=x onerror=alert(1) />",
+    ].join("\n");
+
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue(malicious as never);
+
+    const article = await getNewsBySlug("dowolny");
+    expect(article).not.toBeNull();
+    expect(article!.html).not.toContain("<script");
+    expect(article!.html.toLowerCase()).not.toContain("javascript:");
+    expect(article!.html.toLowerCase()).not.toContain("onerror");
+  });
 });

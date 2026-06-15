@@ -1,9 +1,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import { remark } from "remark";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
-import remarkHtml from "remark-html";
+import remarkRehype from "remark-rehype";
+import rehypeSanitize from "rehype-sanitize";
+import rehypeStringify from "rehype-stringify";
 import type {
   EmergencyContact,
   EventItem,
@@ -18,7 +21,15 @@ const CONTENT_DIR = path.join(process.cwd(), "content");
 const NEWS_DIR = path.join(CONTENT_DIR, "news");
 
 async function markdownToHtml(markdown: string): Promise<string> {
-  const file = await remark().use(remarkGfm).use(remarkHtml).process(markdown);
+  // remark-rehype + rehype-sanitize zapewniają, że surowy HTML/skrypty w plikach
+  // treści NIE trafią do strony (ochrona przed XSS od osób edytujących treść).
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
+    .process(markdown);
   return String(file);
 }
 
@@ -90,8 +101,9 @@ function readJson<T>(relativePath: string, fallback: T): T {
 }
 
 export function getEvents(): EventItem[] {
-  const events = readJson<EventItem[]>("events.json", []);
-  return [...events].sort((a, b) => (a.start < b.start ? -1 : 1));
+  const events = readJson<unknown>("events.json", []);
+  if (!Array.isArray(events)) return [];
+  return [...(events as EventItem[])].sort((a, b) => (a.start < b.start ? -1 : 1));
 }
 
 const warsawClockParts = new Intl.DateTimeFormat("en-GB", {
@@ -141,11 +153,13 @@ type RegionData = {
 };
 
 export function getRegionData(): RegionData {
-  return readJson<RegionData>("region.json", {
-    alerts: [],
-    roadNotices: [],
-    emergency: [],
-    pharmacies: [],
-    health: [],
-  });
+  const raw = readJson<Partial<RegionData> | null>("region.json", null);
+  const asArray = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
+  return {
+    alerts: asArray<RegionAlert>(raw?.alerts),
+    roadNotices: asArray<RoadNotice>(raw?.roadNotices),
+    emergency: asArray<EmergencyContact>(raw?.emergency),
+    pharmacies: asArray<EmergencyContact>(raw?.pharmacies),
+    health: asArray<EmergencyContact>(raw?.health),
+  };
 }
