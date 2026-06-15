@@ -36,21 +36,25 @@ kultury i gwary kurpiowskiej. *Witôjcie u nôs!*
 
 ## 🚀 Uruchomienie lokalne
 
-Wymagania: **Node.js 18.18+** (zalecane 20+), `npm`.
+Wymagania: **Node.js 18.18+** (zalecane 20+) oraz **Yarn** (Classic / v1).
+Projekt korzysta z menedżera **yarn** (lockfile: `yarn.lock`).
 
 ```bash
-npm install          # instalacja zależności
+yarn install         # instalacja zależności
 cp .env.example .env.local   # (opcjonalnie) skopiuj zmienne środowiskowe
-npm run dev          # serwer deweloperski → http://localhost:3000
+yarn dev             # serwer deweloperski → http://localhost:3000
 ```
 
 Inne komendy:
 
 ```bash
-npm run build        # produkcyjny build
-npm run start        # uruchomienie buildu produkcyjnego
-npm run lint         # ESLint
+yarn build           # produkcyjny build
+yarn start           # uruchomienie buildu produkcyjnego
+yarn lint            # ESLint
 ```
+
+> Nie masz yarn? Włącz go przez Corepack (wbudowany w Node 16.10+):
+> `corepack enable` — wówczas `yarn` zadziała bez globalnej instalacji.
 
 ## 🔑 Zmienne środowiskowe
 
@@ -76,7 +80,7 @@ Zobacz [`.env.example`](./.env.example):
 ## ✏️ Jak edytować treści
 
 Wszystkie treści żyją w katalogu [`content/`](./content). Po zmianach w trybie
-`npm run dev` strona przeładuje się automatycznie. W produkcji wystarczy nowy commit
+`yarn dev` strona przeładuje się automatycznie. W produkcji wystarczy nowy commit
 (redeploy).
 
 ### ➕ Dodać news
