@@ -87,6 +87,12 @@ export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
   try {
     const fileContents = fs.readFileSync(fullPath, "utf8");
     const { data, content } = matter(fileContents);
+    if (!isValidNewsFrontmatter(data)) {
+      console.error(
+        `[content] News ${slug}.md ma niepoprawny frontmatter (title/date) — pomijam.`,
+      );
+      return null;
+    }
     const html = await markdownToHtml(content);
     return {
       slug,
@@ -187,14 +193,20 @@ const DEFAULT_EMERGENCY: EmergencyContact[] = [
   { name: "Policja", phone: "997" },
 ];
 
+// Gwarantuje, że 112 zawsze jest na liście — niezależnie od zawartości region.json.
+function ensureEmergencyContacts(list: EmergencyContact[]): EmergencyContact[] {
+  if (list.length === 0) return DEFAULT_EMERGENCY;
+  const has112 = list.some((c) => String(c.phone).replace(/\D/g, "") === "112");
+  return has112 ? list : [DEFAULT_EMERGENCY[0], ...list];
+}
+
 export function getRegionData(): RegionData {
   const raw = readJson<Partial<RegionData> | null>("region.json", null);
   const asArray = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
-  const emergency = asArray<EmergencyContact>(raw?.emergency);
   return {
     alerts: asArray<RegionAlert>(raw?.alerts),
     roadNotices: asArray<RoadNotice>(raw?.roadNotices),
-    emergency: emergency.length > 0 ? emergency : DEFAULT_EMERGENCY,
+    emergency: ensureEmergencyContacts(asArray<EmergencyContact>(raw?.emergency)),
     pharmacies: asArray<EmergencyContact>(raw?.pharmacies),
     health: asArray<EmergencyContact>(raw?.health),
   };

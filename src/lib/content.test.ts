@@ -43,6 +43,16 @@ describe("news content", () => {
     expect(await getNewsBySlug("nie-istnieje-xyz")).toBeNull();
   });
 
+  it("returns null for an article with valid YAML but missing date", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue(
+      '---\ntitle: "Bez daty"\n---\nTreść' as never,
+    );
+    expect(await getNewsBySlug("bez-daty")).toBeNull();
+    vi.restoreAllMocks();
+  });
+
   it("skips a single malformed markdown file instead of crashing the list", () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
     const realRead = fs.readFileSync.bind(fs);
@@ -122,6 +132,16 @@ describe("region data", () => {
     expect(Array.isArray(region.pharmacies)).toBe(true);
     expect(Array.isArray(region.health)).toBe(true);
   });
+
+  it("injects 112 even when region.json lists other numbers without it", () => {
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue(
+      JSON.stringify({ emergency: [{ name: "Policja", phone: "997" }] }) as never,
+    );
+    const region = getRegionData();
+    expect(region.emergency.map((c) => c.phone.replace(/\D/g, ""))).toContain("112");
+    vi.restoreAllMocks();
+  });
 });
 
 describe("resilience to corrupt content files", () => {
@@ -161,6 +181,10 @@ describe("markdown sanitization (XSS protection)", () => {
 
   it("strips scripts, event handlers and javascript: links from rendered HTML", async () => {
     const malicious = [
+      "---",
+      'title: "Test XSS"',
+      'date: "2026-06-15"',
+      "---",
       "# Tytuł",
       "",
       "<script>alert('xss')</script>",
