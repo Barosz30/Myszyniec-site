@@ -27,18 +27,16 @@ export const metadata: Metadata = {
     "pogoda Myszyniec",
     "wydarzenia Myszyniec",
   ],
+  // Uwaga: świadomie NIE ustawiamy tu openGraph.title/description ani twitter.title/
+  // description — Next.js uzupełni je z `title`/`description` danej strony. Dzięki temu
+  // udostępnianie podstron (np. /pogoda) pokazuje właściwy tytuł, a nie stronę główną.
   openGraph: {
     type: "website",
     locale: SITE.locale,
-    url: SITE.url,
     siteName: SITE.name,
-    title: `${SITE.name} — lokalny portal o Myszyńcu`,
-    description: SITE.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — lokalny portal o Myszyńcu`,
-    description: SITE.description,
   },
   alternates: {
     canonical: "/",
