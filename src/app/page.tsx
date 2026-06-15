@@ -6,7 +6,7 @@ import { EventCard } from "@/components/EventCard";
 import { WeatherIcon } from "@/components/WeatherIcon";
 import { getAllNews, getUpcomingEvents } from "@/lib/content";
 import { getWeather } from "@/lib/weather";
-import { dailyKurpieFact } from "@/lib/kurpie";
+import { DailyFact } from "@/components/DailyFact";
 
 export const revalidate = 1800;
 
@@ -52,7 +52,6 @@ export default async function HomePage() {
     Promise.resolve(getUpcomingEvents(3)),
   ]);
   const latestNews = news.slice(0, 3);
-  const fact = dailyKurpieFact();
 
   return (
     <>
@@ -241,7 +240,9 @@ export default async function HomePage() {
               <p className="text-sm font-semibold uppercase tracking-wider text-accent-foreground dark:text-accent">
                 Czy wiesz, że…
               </p>
-              <p className="mt-2 text-lg text-foreground">{fact}</p>
+              <p className="mt-2 text-lg text-foreground">
+                <DailyFact />
+              </p>
             </div>
             <div className="rounded-[var(--radius-card)] border border-border bg-surface p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-primary">
