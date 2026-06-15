@@ -51,6 +51,23 @@ Inne komendy:
 yarn build           # produkcyjny build
 yarn start           # uruchomienie buildu produkcyjnego
 yarn lint            # ESLint
+yarn test            # testy jednostkowe i komponentów (Vitest)
+yarn test:watch      # testy w trybie watch
+```
+
+## ✅ Testy
+
+Projekt ma testy w [Vitest](https://vitest.dev/) + Testing Library:
+
+- **`src/lib/*.test.ts`** — logika: mapowanie pogody (Open-Meteo), formatowanie dat
+  (strefa Europe/Warsaw), ładowanie treści, wstawki kurpiowskie.
+- **`src/components/*.test.tsx`** — komponenty: `NewsList`, `EventCard`,
+  `WeatherCard`, `SectionHeading`.
+- **`tests/content-data.test.ts`** — walidacja treści w repo (poprawny frontmatter
+  newsów, unikalne ID i daty wydarzeń, obecność numerów alarmowych w `region.json`).
+
+```bash
+yarn test
 ```
 
 > Nie masz yarn? Włącz go przez Corepack (wbudowany w Node 16.10+):
