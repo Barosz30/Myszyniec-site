@@ -1,5 +1,5 @@
 import type { EventItem } from "@/lib/types";
-import { formatDateTime } from "@/lib/format";
+import { formatDateTime, formatDay, formatMonthShort } from "@/lib/format";
 
 const categoryColors: Record<string, string> = {
   Kultura: "bg-accent/15 text-accent-foreground dark:text-accent",
@@ -9,9 +9,8 @@ const categoryColors: Record<string, string> = {
 };
 
 export function EventCard({ event }: { event: EventItem }) {
-  const start = new Date(event.start);
-  const day = start.toLocaleDateString("pl-PL", { day: "2-digit" });
-  const month = start.toLocaleDateString("pl-PL", { month: "short" });
+  const day = formatDay(event.start);
+  const month = formatMonthShort(event.start);
 
   return (
     <article className="flex gap-4 rounded-[var(--radius-card)] border border-border bg-surface p-5 shadow-sm">
