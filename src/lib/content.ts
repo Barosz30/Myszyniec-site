@@ -78,7 +78,15 @@ export async function getAboutContent(): Promise<{
 function readJson<T>(relativePath: string, fallback: T): T {
   const fullPath = path.join(CONTENT_DIR, relativePath);
   if (!fs.existsSync(fullPath)) return fallback;
-  return JSON.parse(fs.readFileSync(fullPath, "utf8")) as T;
+  try {
+    return JSON.parse(fs.readFileSync(fullPath, "utf8")) as T;
+  } catch (error) {
+    // Uszkodzony/niepoprawny JSON nie może wywrócić całej strony (np. literówka
+    // w content/events.json). Logujemy i zwracamy bezpieczną wartość domyślną.
+    // Testy w tests/content-data.test.ts wyłapią takie błędy jeszcze przed wdrożeniem.
+    console.error(`[content] Nie udało się sparsować ${relativePath}:`, error);
+    return fallback;
+  }
 }
 
 export function getEvents(): EventItem[] {

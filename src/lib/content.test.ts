@@ -1,4 +1,5 @@
-import { describe, expect, it } from "vitest";
+import fs from "node:fs";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   eventEndTime,
   getAboutContent,
@@ -105,5 +106,22 @@ describe("region data", () => {
     expect(Array.isArray(region.roadNotices)).toBe(true);
     expect(Array.isArray(region.pharmacies)).toBe(true);
     expect(Array.isArray(region.health)).toBe(true);
+  });
+});
+
+describe("resilience to corrupt content files", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  it("returns a safe fallback when JSON cannot be parsed", () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.spyOn(fs, "existsSync").mockReturnValue(true);
+    vi.spyOn(fs, "readFileSync").mockReturnValue("{ this is : not valid json" as never);
+
+    expect(getEvents()).toEqual([]);
+    const region = getRegionData();
+    expect(region.emergency).toEqual([]);
+    expect(region.alerts).toEqual([]);
   });
 });
