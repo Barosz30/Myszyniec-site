@@ -136,7 +136,8 @@ describe("resilience to corrupt content files", () => {
 
     expect(getEvents()).toEqual([]);
     const region = getRegionData();
-    expect(region.emergency).toEqual([]);
+    // Numery alarmowe nie mogą zniknąć — wracają do bezpiecznych domyślnych
+    expect(region.emergency.map((c) => c.phone)).toContain("112");
     expect(region.alerts).toEqual([]);
   });
 
@@ -147,7 +148,7 @@ describe("resilience to corrupt content files", () => {
 
     expect(getEvents()).toEqual([]);
     const region = getRegionData();
-    expect(region.emergency).toEqual([]);
+    expect(region.emergency.map((c) => c.phone)).toContain("112");
     expect(region.roadNotices).toEqual([]);
     expect(region.health).toEqual([]);
   });

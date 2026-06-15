@@ -50,6 +50,12 @@ export function getNewsSlugs(): string[] {
   return listNewsSlugs();
 }
 
+function isValidNewsFrontmatter(data: Record<string, unknown>): boolean {
+  if (typeof data.title !== "string" || data.title.trim() === "") return false;
+  if (typeof data.date !== "string") return false;
+  return !Number.isNaN(new Date(data.date).getTime());
+}
+
 export function getAllNews(): NewsListItem[] {
   return listNewsSlugs()
     .map((slug): NewsListItem | null => {
@@ -57,6 +63,12 @@ export function getAllNews(): NewsListItem[] {
         const fullPath = path.join(NEWS_DIR, `${slug}.md`);
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data } = matter(fileContents);
+        if (!isValidNewsFrontmatter(data)) {
+          console.error(
+            `[content] Pomijam news ${slug}.md — brak poprawnego pola title lub date.`,
+          );
+          return null;
+        }
         return { slug, ...(data as NewsFrontmatter) };
       } catch (error) {
         // Jeden wadliwy plik (np. błąd we frontmatter) nie może wywrócić całej
@@ -165,13 +177,24 @@ type RegionData = {
   health: EmergencyContact[];
 };
 
+// Awaryjne numery alarmowe — używane, gdy content/region.json jest pusty,
+// uszkodzony lub nie zawiera numerów. Bezpieczeństwo: 112 nie może „zniknąć"
+// przez literówkę w pliku treści.
+const DEFAULT_EMERGENCY: EmergencyContact[] = [
+  { name: "Numer alarmowy (ogólny)", phone: "112", note: "Zawsze, gdy zagrożone jest życie lub zdrowie" },
+  { name: "Pogotowie ratunkowe", phone: "999" },
+  { name: "Straż pożarna", phone: "998" },
+  { name: "Policja", phone: "997" },
+];
+
 export function getRegionData(): RegionData {
   const raw = readJson<Partial<RegionData> | null>("region.json", null);
   const asArray = <T>(value: unknown): T[] => (Array.isArray(value) ? (value as T[]) : []);
+  const emergency = asArray<EmergencyContact>(raw?.emergency);
   return {
     alerts: asArray<RegionAlert>(raw?.alerts),
     roadNotices: asArray<RoadNotice>(raw?.roadNotices),
-    emergency: asArray<EmergencyContact>(raw?.emergency),
+    emergency: emergency.length > 0 ? emergency : DEFAULT_EMERGENCY,
     pharmacies: asArray<EmergencyContact>(raw?.pharmacies),
     health: asArray<EmergencyContact>(raw?.health),
   };

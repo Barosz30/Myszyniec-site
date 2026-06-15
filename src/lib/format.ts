@@ -42,26 +42,41 @@ const dayKeyFormatter = new Intl.DateTimeFormat("en-CA", {
   day: "2-digit",
 });
 
+// Bezpiecznie zamienia ISO na Date — zwraca null dla brakujących/niepoprawnych
+// wartości, dzięki czemu formatery nie rzucają „RangeError: Invalid time value".
+function toValidDate(iso: string | null | undefined): Date | null {
+  if (!iso) return null;
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? null : d;
+}
+
 export function formatDate(iso: string): string {
-  return dateFormatter.format(new Date(iso));
+  const d = toValidDate(iso);
+  return d ? dateFormatter.format(d) : "";
 }
 
 export function formatDateTime(iso: string): string {
-  return dateTimeFormatter.format(new Date(iso));
+  const d = toValidDate(iso);
+  return d ? dateTimeFormatter.format(d) : "";
 }
 
 export function formatWeekday(iso: string): string {
-  return weekdayFormatter.format(new Date(iso));
+  const d = toValidDate(iso);
+  return d ? weekdayFormatter.format(d) : "";
 }
 
 export function formatDay(iso: string): string {
-  return dayFormatter.format(new Date(iso));
+  const d = toValidDate(iso);
+  return d ? dayFormatter.format(d) : "";
 }
 
 export function formatMonthShort(iso: string): string {
-  return monthShortFormatter.format(new Date(iso));
+  const d = toValidDate(iso);
+  return d ? monthShortFormatter.format(d) : "";
 }
 
 export function isToday(iso: string): boolean {
-  return dayKeyFormatter.format(new Date(iso)) === dayKeyFormatter.format(new Date());
+  const d = toValidDate(iso);
+  if (!d) return false;
+  return dayKeyFormatter.format(d) === dayKeyFormatter.format(new Date());
 }

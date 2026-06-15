@@ -37,4 +37,12 @@ describe("format helpers (Europe/Warsaw)", () => {
       "sie",
     );
   });
+
+  it("never throws on missing or invalid dates", () => {
+    expect(() => formatDate("nieprawidłowa-data")).not.toThrow();
+    expect(formatDate("nieprawidłowa-data")).toBe("");
+    expect(formatDateTime("")).toBe("");
+    expect(formatDay("xyz")).toBe("");
+    expect(isToday("xyz")).toBe(false);
+  });
 });
