@@ -1,0 +1,37 @@
+[
+  {
+    "id": "miodobranie-2026",
+    "title": "Miodobranie Kurpiowskie",
+    "start": "2026-08-23T11:00:00+02:00",
+    "end": "2026-08-23T20:00:00+02:00",
+    "location": "Myszyniec, plac przy bazylice",
+    "description": "Doroczne święto kultury kurpiowskiej: kapele ludowe, rękodzieło, regionalne przysmaki. TODO: potwierdzić dokładną datę i program u organizatora.",
+    "category": "Kultura",
+    "url": "https://www.myszyniec.pl/"
+  },
+  {
+    "id": "jarmark-kurpiowski-2026",
+    "title": "Jarmark produktów regionalnych",
+    "start": "2026-07-12T09:00:00+02:00",
+    "end": "2026-07-12T14:00:00+02:00",
+    "location": "Rynek / pl. Wolności, Myszyniec",
+    "description": "Stoiska z lokalnymi wyrobami, miodami i rękodziełem. Wpis przykładowy — uzupełnij realnym terminem.",
+    "category": "Społeczność"
+  },
+  {
+    "id": "koncert-letni-2026",
+    "title": "Letni koncert na powietrzu",
+    "start": "2026-07-26T18:00:00+02:00",
+    "location": "Regionalne Centrum Kultury Kurpiowskiej w Myszyńcu",
+    "description": "Przykładowe wydarzenie kulturalne. Zmień dane w pliku content/events.json.",
+    "category": "Kultura"
+  },
+  {
+    "id": "bieg-kurpiowski-2026",
+    "title": "Bieg Kurpiowski",
+    "start": "2026-09-13T10:00:00+02:00",
+    "location": "Myszyniec",
+    "description": "Przykładowy bieg uliczny dla mieszkańców i gości. TODO: potwierdzić trasę i zapisy.",
+    "category": "Sport"
+  }
+]
