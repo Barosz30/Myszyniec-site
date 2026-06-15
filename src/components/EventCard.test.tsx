@@ -25,11 +25,18 @@ describe("EventCard", () => {
   it("links the title when a url is provided", () => {
     render(<EventCard event={{ ...baseEvent, url: "https://example.com" }} />);
     const link = screen.getByRole("link", { name: "Miodobranie Kurpiowskie" });
-    expect(link).toHaveAttribute("href", "https://example.com");
+    expect(link).toHaveAttribute("href", "https://example.com/");
   });
 
   it("renders a non-linked title when no url is provided", () => {
     render(<EventCard event={baseEvent} />);
+    expect(
+      screen.queryByRole("link", { name: "Miodobranie Kurpiowskie" }),
+    ).not.toBeInTheDocument();
+  });
+
+  it("does not render a dangerous javascript: url as a link", () => {
+    render(<EventCard event={{ ...baseEvent, url: "javascript:alert(1)" }} />);
     expect(
       screen.queryByRole("link", { name: "Miodobranie Kurpiowskie" }),
     ).not.toBeInTheDocument();

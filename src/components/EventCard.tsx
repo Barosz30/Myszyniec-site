@@ -1,5 +1,6 @@
 import type { EventItem } from "@/lib/types";
 import { formatDateTime, formatDay, formatMonthShort } from "@/lib/format";
+import { safeExternalUrl } from "@/lib/url";
 
 const categoryColors: Record<string, string> = {
   Kultura: "bg-accent/15 text-accent-foreground dark:text-accent",
@@ -11,6 +12,7 @@ const categoryColors: Record<string, string> = {
 export function EventCard({ event }: { event: EventItem }) {
   const day = formatDay(event.start);
   const month = formatMonthShort(event.start);
+  const eventUrl = safeExternalUrl(event.url);
 
   return (
     <article className="flex gap-4 rounded-[var(--radius-card)] border border-border bg-surface p-5 shadow-sm">
@@ -36,9 +38,9 @@ export function EventCard({ event }: { event: EventItem }) {
         </div>
 
         <h3 className="mt-1 text-lg font-bold leading-snug text-foreground">
-          {event.url ? (
+          {eventUrl ? (
             <a
-              href={event.url}
+              href={eventUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="transition-colors hover:text-primary"

@@ -5,6 +5,7 @@ import { Container } from "@/components/Container";
 import { getNewsBySlug, getNewsSlugs } from "@/lib/content";
 import { formatDate } from "@/lib/format";
 import { SITE } from "@/lib/site";
+import { safeExternalUrl } from "@/lib/url";
 
 export const dynamicParams = false;
 
@@ -41,6 +42,8 @@ export default async function NewsArticlePage({
   const { slug } = await params;
   const article = await getNewsBySlug(slug);
   if (!article) notFound();
+
+  const sourceUrl = safeExternalUrl(article.sourceUrl);
 
   return (
     <Container className="py-12">
@@ -86,16 +89,16 @@ export default async function NewsArticlePage({
           dangerouslySetInnerHTML={{ __html: article.html }}
         />
 
-        {article.sourceUrl ? (
+        {sourceUrl ? (
           <p className="mt-8 rounded-xl border border-border bg-surface-muted/60 p-4 text-sm text-muted-foreground">
             Źródło:{" "}
             <a
-              href={article.sourceUrl}
+              href={sourceUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-medium text-primary underline"
             >
-              {article.source ?? article.sourceUrl}
+              {article.source ?? sourceUrl}
             </a>
           </p>
         ) : null}
