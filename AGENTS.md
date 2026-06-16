@@ -14,6 +14,8 @@ Use `yarn`, not `npm`, so the lockfile stays consistent. Requires Node.js 20+ (t
 - `yarn dev` — dev server at http://localhost:3000 (Turbopack, hot reload).
 - `yarn lint` — ESLint (flat config in `eslint.config.mjs`).
 - `yarn build` — production build (also runs `tsc`); `yarn start` runs the build.
+- `yarn test` — run the Vitest suite once (`yarn test:watch` for watch mode); config in
+  `vitest.config.ts` (jsdom env, setup in `vitest.setup.ts`). Pure unit tests, no network needed.
 
 **Non-obvious notes:**
 - **No env vars or API keys are required to run.** `.env.example` documents an optional
@@ -24,4 +26,4 @@ Use `yarn`, not `npm`, so the lockfile stays consistent. Requires Node.js 20+ (t
 - Weather pages use ISR (`revalidate = 1800`), so data refreshes ~every 30 min rather
   than on every request.
 - To add content, edit files under `content/` (news = `.md` files in `content/news/`,
-  events = `content/events.json`); `npm run dev` hot-reloads on change.
+  events = `content/events.json`); `yarn dev` hot-reloads on change.

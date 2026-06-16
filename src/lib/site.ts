@@ -1,5 +1,20 @@
 // Centralna konfiguracja portalu. Zmień tu dane kontaktowe, nazwę i linki nawigacji.
 
+const DEFAULT_SITE_URL = "https://twoj-myszyniec.vercel.app";
+
+// Bezpiecznie ustala adres portalu z NEXT_PUBLIC_SITE_URL.
+// Pusta lub niepoprawna wartość nie może wywrócić całej aplikacji
+// (new URL(...) w metadataBase rzuciłby błędem przy starcie).
+function resolveSiteUrl(): string {
+  const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (!fromEnv) return DEFAULT_SITE_URL;
+  try {
+    return new URL(fromEnv).toString().replace(/\/$/, "");
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
 export const SITE = {
   name: "Twój Myszyniec",
   shortName: "Twój Myszyniec",
@@ -7,7 +22,7 @@ export const SITE = {
     "Nieoficjalny portal społecznościowy o Myszyńcu — newsy, pogoda, wydarzenia i sprawy ważne dla regionu. Z sercem dla Kurpiów.",
   // Zmień na docelową domenę po wdrożeniu (używane w SEO, sitemap, OpenGraph).
   // Można nadpisać zmienną środowiskową NEXT_PUBLIC_SITE_URL.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://twoj-myszyniec.vercel.app",
+  url: resolveSiteUrl(),
   locale: "pl_PL",
   // Współrzędne Myszyńca (woj. mazowieckie, powiat ostrołęcki)
   geo: {

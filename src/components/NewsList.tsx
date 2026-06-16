@@ -4,7 +4,7 @@ import { formatDate } from "@/lib/format";
 
 function NewsCard({ item }: { item: NewsListItem }) {
   return (
-    <article className="group flex h-full flex-col rounded-[var(--radius-card)] border border-border bg-surface p-5 shadow-sm transition-shadow hover:shadow-md">
+    <article className="group relative flex h-full flex-col rounded-[var(--radius-card)] border border-border bg-surface p-5 shadow-sm transition-shadow hover:shadow-md">
       <div className="flex items-center gap-2 text-xs text-muted-foreground">
         <time dateTime={item.date}>{formatDate(item.date)}</time>
         {item.source ? (
@@ -18,7 +18,7 @@ function NewsCard({ item }: { item: NewsListItem }) {
       <h3 className="mt-2 text-lg font-bold leading-snug text-foreground">
         <Link
           href={`/newsy/${item.slug}`}
-          className="transition-colors after:absolute group-hover:text-primary"
+          className="transition-colors after:absolute after:inset-0 after:content-[''] group-hover:text-primary"
         >
           {item.title}
         </Link>
@@ -40,13 +40,10 @@ function NewsCard({ item }: { item: NewsListItem }) {
       </div>
 
       <div className="mt-auto pt-4">
-        <Link
-          href={`/newsy/${item.slug}`}
-          className="inline-flex items-center gap-1 text-sm font-semibold text-primary"
-        >
+        <span className="inline-flex items-center gap-1 text-sm font-semibold text-primary">
           Czytaj dalej
           <span aria-hidden="true">→</span>
-        </Link>
+        </span>
       </div>
     </article>
   );

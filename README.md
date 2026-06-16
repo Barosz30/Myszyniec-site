@@ -36,21 +36,42 @@ kultury i gwary kurpiowskiej. *Witôjcie u nôs!*
 
 ## 🚀 Uruchomienie lokalne
 
-Wymagania: **Node.js 18.18+** (zalecane 20+), `npm`.
+Wymagania: **Node.js 20.9+** (wymagane przez Next.js 16) oraz **Yarn** (Classic / v1).
+Projekt korzysta z menedżera **yarn** (lockfile: `yarn.lock`).
 
 ```bash
-npm install          # instalacja zależności
+yarn install         # instalacja zależności
 cp .env.example .env.local   # (opcjonalnie) skopiuj zmienne środowiskowe
-npm run dev          # serwer deweloperski → http://localhost:3000
+yarn dev             # serwer deweloperski → http://localhost:3000
 ```
 
 Inne komendy:
 
 ```bash
-npm run build        # produkcyjny build
-npm run start        # uruchomienie buildu produkcyjnego
-npm run lint         # ESLint
+yarn build           # produkcyjny build
+yarn start           # uruchomienie buildu produkcyjnego
+yarn lint            # ESLint
+yarn test            # testy jednostkowe i komponentów (Vitest)
+yarn test:watch      # testy w trybie watch
 ```
+
+## ✅ Testy
+
+Projekt ma testy w [Vitest](https://vitest.dev/) + Testing Library:
+
+- **`src/lib/*.test.ts`** — logika: mapowanie pogody (Open-Meteo), formatowanie dat
+  (strefa Europe/Warsaw), ładowanie treści, wstawki kurpiowskie.
+- **`src/components/*.test.tsx`** — komponenty: `NewsList`, `EventCard`,
+  `WeatherCard`, `SectionHeading`.
+- **`tests/content-data.test.ts`** — walidacja treści w repo (poprawny frontmatter
+  newsów, unikalne ID i daty wydarzeń, obecność numerów alarmowych w `region.json`).
+
+```bash
+yarn test
+```
+
+> Nie masz yarn? Włącz go przez Corepack (wbudowany w Node 16.10+):
+> `corepack enable` — wówczas `yarn` zadziała bez globalnej instalacji.
 
 ## 🔑 Zmienne środowiskowe
 
@@ -76,7 +97,7 @@ Zobacz [`.env.example`](./.env.example):
 ## ✏️ Jak edytować treści
 
 Wszystkie treści żyją w katalogu [`content/`](./content). Po zmianach w trybie
-`npm run dev` strona przeładuje się automatycznie. W produkcji wystarczy nowy commit
+`yarn dev` strona przeładuje się automatycznie. W produkcji wystarczy nowy commit
 (redeploy).
 
 ### ➕ Dodać news

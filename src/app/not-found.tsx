@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
+
+export const metadata: Metadata = {
+  title: "Nie znaleziono strony (404)",
+  // Strony błędu nie powinny być indeksowane ani wskazywać kanonicznie na stronę główną.
+  robots: { index: false, follow: false },
+  alternates: { canonical: null },
+};
 
 export default function NotFound() {
   return (

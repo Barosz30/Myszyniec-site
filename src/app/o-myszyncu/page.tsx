@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getAboutContent } from "@/lib/content";
 import { SITE } from "@/lib/site";
+import { safeExternalUrl } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "O Myszyńcu",
@@ -70,18 +71,25 @@ export default async function AboutPage() {
                 Źródła
               </h2>
               <ul className="mt-3 space-y-1 text-sm">
-                {about.sources.map((s) => (
-                  <li key={s.url}>
-                    <a
-                      href={s.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary underline"
-                    >
-                      {s.label}
-                    </a>
-                  </li>
-                ))}
+                {about.sources.map((s) => {
+                  const href = safeExternalUrl(s.url);
+                  return (
+                    <li key={s.url}>
+                      {href ? (
+                        <a
+                          href={href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-primary underline"
+                        >
+                          {s.label}
+                        </a>
+                      ) : (
+                        <span>{s.label}</span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ) : null}

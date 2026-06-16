@@ -3,6 +3,7 @@ import { Container } from "@/components/Container";
 import { SectionHeading } from "@/components/SectionHeading";
 import { getRegionData } from "@/lib/content";
 import type { EmergencyContact, RegionAlert } from "@/lib/types";
+import { safeExternalUrl } from "@/lib/url";
 
 export const metadata: Metadata = {
   title: "Ważne dla regionu",
@@ -89,9 +90,9 @@ export default function RegionPage() {
               {alert.body ? (
                 <p className="mt-2 text-sm text-muted-foreground">{alert.body}</p>
               ) : null}
-              {alert.sourceUrl ? (
+              {safeExternalUrl(alert.sourceUrl) ? (
                 <a
-                  href={alert.sourceUrl}
+                  href={safeExternalUrl(alert.sourceUrl)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2 inline-block text-sm font-medium text-primary underline"

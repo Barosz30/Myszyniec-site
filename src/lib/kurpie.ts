@@ -27,9 +27,15 @@ export function randomKurpiePhrase(): KurpiePhrase {
   return KURPIE_PHRASES[Math.floor(Math.random() * KURPIE_PHRASES.length)];
 }
 
-// Ciekawostka „dnia" — wybierana deterministycznie na podstawie dnia miesiąca,
-// dzięki czemu zmienia się codziennie, a render pozostaje stabilny w danym dniu.
+const warsawDayFormatter = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Warsaw",
+  day: "2-digit",
+});
+
+// Ciekawostka „dnia" — wybierana deterministycznie na podstawie dnia miesiąca
+// (wg strefy Europe/Warsaw), dzięki czemu zmienia się o właściwej porze dla
+// polskich użytkowników, a render pozostaje stabilny w obrębie danego dnia.
 export function dailyKurpieFact(): string {
-  const dayOfMonth = new Date().getDate();
+  const dayOfMonth = Number(warsawDayFormatter.format(new Date()));
   return KURPIE_FACTS[dayOfMonth % KURPIE_FACTS.length];
 }
