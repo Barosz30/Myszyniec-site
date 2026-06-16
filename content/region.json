@@ -1,0 +1,48 @@
+{
+  "alerts": [
+    {
+      "id": "imgw-placeholder",
+      "level": "info",
+      "title": "Brak aktywnych ostrzeżeń meteorologicznych",
+      "body": "To miejsce na ostrzeżenia IMGW-PIB dla powiatu ostrołęckiego. Planujemy automatyczną integrację z oficjalnym źródłem. Do tego czasu sprawdzaj ostrzeżenia bezpośrednio u IMGW.",
+      "source": "IMGW-PIB (placeholder)",
+      "sourceUrl": "https://meteo.imgw.pl/"
+    }
+  ],
+  "roadNotices": [
+    {
+      "id": "road-placeholder-1",
+      "title": "Brak zgłoszonych utrudnień drogowych",
+      "body": "Tu pojawią się komunikaty o pracach drogowych i utrudnieniach (DK53, DW645, DW614). Wpis przykładowy — edytuj w content/region.json.",
+      "status": "planned",
+      "date": "2026-06-15"
+    }
+  ],
+  "emergency": [
+    { "name": "Numer alarmowy (ogólny)", "phone": "112", "note": "Zawsze, gdy zagrożone jest życie lub zdrowie" },
+    { "name": "Pogotowie ratunkowe", "phone": "999" },
+    { "name": "Straż pożarna", "phone": "998" },
+    { "name": "Policja", "phone": "997" },
+    { "name": "Pogotowie energetyczne", "phone": "991" },
+    { "name": "Pogotowie gazowe", "phone": "992" }
+  ],
+  "health": [
+    {
+      "name": "Najbliższy szpital — Ostrołęka",
+      "phone": "29 765 21 00",
+      "note": "Mazowiecki Szpital Specjalistyczny w Ostrołęce (ok. 39 km). TODO: zweryfikować aktualny numer i adres."
+    },
+    {
+      "name": "Przychodnia / NZOZ w Myszyńcu",
+      "phone": "29 772 11 30",
+      "note": "Dane przykładowe — potwierdź u placówki i zaktualizuj w content/region.json."
+    }
+  ],
+  "pharmacies": [
+    {
+      "name": "Apteka w Myszyńcu",
+      "phone": "29 772 10 00",
+      "note": "Dane przykładowe. Dyżury aptek sprawdzaj na bieżąco — TODO: dodać realny wykaz."
+    }
+  ]
+}
