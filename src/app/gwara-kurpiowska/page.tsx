@@ -45,9 +45,12 @@ export default function KurpieDialectPage() {
 
       <div className="mt-6 rounded-[var(--radius-card)] border border-border bg-accent/10 p-5 text-sm text-muted-foreground">
         <p>
-          To nie są zapisy fonetyczne — przy każdym haśle możesz odsłuchać{" "}
-          <strong className="text-foreground">prawdziwe nagranie</strong> wymowy po
-          kurpiowsku. Hasła warto weryfikować z lokalnymi znawcami gwary (np.{" "}
+          Przy każdym haśle możesz odsłuchać nagranie wymowy po kurpiowsku. Obecnie
+          są to <strong className="text-foreground">syntetyczne nagrania</strong> (lektor
+          TTS) — możesz je sprawdzić i w razie potrzeby podmienić własnym plikiem MP3 w
+          katalogu{" "}
+          <code className="rounded bg-surface px-1.5 py-0.5">public/audio/gwara/</code>
+          . Hasła warto weryfikować z lokalnymi znawcami gwary (np.{" "}
           <a
             href="https://zwiazekkurpiow.pl/"
             target="_blank"
@@ -88,7 +91,7 @@ export default function KurpieDialectPage() {
           })}
         </ul>
         <p className="mt-4 text-sm text-muted-foreground">
-          Aby dodać nagranie, umieść plik MP3 w{" "}
+          Aby podmienić nagranie, zastąp plik MP3 w{" "}
           <code className="rounded bg-surface px-1.5 py-0.5">
             public/audio/gwara/
           </code>{" "}
@@ -98,6 +101,8 @@ export default function KurpieDialectPage() {
           <code className="rounded bg-surface px-1.5 py-0.5">
             content/kurpie-dictionary.json
           </code>
+          . Nowe syntetyczne nagrania wygenerujesz poleceniem{" "}
+          <code className="rounded bg-surface px-1.5 py-0.5">yarn audio:kurpie</code>
           .
         </p>
       </div>

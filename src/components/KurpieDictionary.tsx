@@ -24,8 +24,6 @@ export function KurpieDictionary({ entries }: KurpieDictionaryProps) {
     [entries, query, category],
   );
 
-  const audioCount = entries.filter((entry) => Boolean(entry.audio)).length;
-
   return (
     <div className="mt-10 space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -65,10 +63,10 @@ export function KurpieDictionary({ entries }: KurpieDictionaryProps) {
       </div>
 
       <p className="text-sm text-muted-foreground">
-        Wyświetlono {filtered.length} z {entries.length} haseł.
-        {audioCount > 0
-          ? ` Nagrania dostępne dla ${audioCount} pozycji.`
-          : " Nagrania można dodać jako pliki MP3 w katalogu public/audio/gwara/."}
+        Wyświetlono {filtered.length} z {entries.length} haseł. Nagrania są
+        syntetyczne (TTS) — podmień plik MP3 w{" "}
+        <code className="rounded bg-surface-muted px-1 py-0.5">public/audio/gwara/</code>,
+        gdy będziesz mieć własne nagranie.
       </p>
 
       {filtered.length === 0 ? (
