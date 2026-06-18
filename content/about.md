@@ -19,6 +19,18 @@ sources:
     url: "https://www.myszyniec.pl/"
   - label: "Polska w liczbach — gmina Myszyniec"
     url: "https://www.polskawliczbach.pl/gmina_Myszyniec"
+  - label: "Gwara kurpiowska — Wikipedia"
+    url: "https://pl.wikipedia.org/wiki/Gwara_kurpiowska"
+  - label: "Kurpie — gwara regionu (Dialektologia UW)"
+    url: "http://www.dialektologia.uw.edu.pl/index.php?l1=mapa-serwisu&l2=&l3=&l4=kurpie-gwara-regionu"
+  - label: "Kurpiowska wycinanka ludowa — NIKiDW"
+    url: "https://archiwum.nikidw.edu.pl/2022/08/05/kurpiowska-wycinanka-ludowa/"
+  - label: "Leluja — Wikipedia"
+    url: "https://pl.wikipedia.org/wiki/Leluja"
+  - label: "Miodobranie Kurpiowskie — RCKK w Myszyńcu"
+    url: "https://www.rckkmyszyniec.pl/index.php/menu-miodobranie/informacje-ogolne"
+  - label: "Kultura kurpiowska — Wikipedia"
+    url: "https://pl.wikipedia.org/wiki/Kultura_kurpiowska"
 ---
 
 ## Krótko o mieście
@@ -47,14 +59,64 @@ Najważniejsze daty (na podstawie źródeł historycznych — zob. przypisy na d
 
 ## Czym słynie region
 
-Kurpie Puszczy Zielonej to żywa tradycja, którą wciąż można zobaczyć i usłyszeć:
+Kurpie Puszczy Zielonej to żywa tradycja, którą wciąż można zobaczyć i usłyszeć —
+od mowy, przez papierowe wycinanki, po bartnicze święto miodu. Poniżej kilka słów
+o tym, co dla Kurpiów (i dla Myszyńca) najważniejsze.
 
-- **Wycinanki** — kolorowe, misterne kompozycje z papieru.
-- **Bursztyn** — „złoto Kurpiów", od wieków obecny w strojach i biżuterii.
-- **Gwara kurpiowska** — odrębna, pełna charakteru mowa.
-- **Miodobranie Kurpiowskie** — barwne święto tradycji bartniczych i ludowych.
-- **Bazylika pw. Trójcy Przenajświętszej** — neogotycki kościół, jeden z symboli miasta.
-  <!-- TODO: doprecyzować dane o bazylice (rok budowy, status bazyliki mniejszej) z wiarygodnym źródłem. -->
+### Gwara kurpiowska
+
+Gwara kurpiowska należy do **dialektu mazowieckiego** i wywodzi się z mowy
+osadników, którzy zasiedlali Puszczę Zieloną między XVI a XVIII wiekiem. To nie
+„gorsza polszczyzna", lecz odrębny, barwny system z własną pisownią i słownikami.
+
+Jej charakterystyczne cechy to m.in.:
+
+- **mazurzenie** (wymowa _sz, cz, ż_ jak _s, c, z_),
+- **asynchroniczna wymowa miękkich spółgłosek wargowych** — stąd _psiekny_
+  zamiast „piękny" czy _w niastach_ zamiast „w miastach",
+- **szeroka wymowa _ę_ i grupy _en_** — Kurp spod Myszyńca powie _bańdzie_,
+  _psiankny_, _scanscia_ (czyli: będzie, piękny, szczęścia).
+
+> Dlatego witamy po kurpiowsku: **„Witôjcie u nôs!"** — a żegnamy: **„Ostańcie z Boziem"**.
+
+### Wycinanka kurpiowska
+
+Wycinanki pojawiły się na Kurpiach w **połowie XIX wieku** — początkowo zastępowały
+firanki w oknach chat. Wycinano je **nożycami do strzyżenia owiec** z kolorowego,
+glansowanego papieru. Najbardziej znane formy to:
+
+- **leluja** — pionowa, symetryczna kompozycja w kształcie „drzewka życia",
+- **gwiazda** — ażurowa, promienista, cięta wzdłuż osi symetrii,
+- **zielko** oraz wycinanki figuralne (ptaki, koniki, jeźdźcy).
+
+W Puszczy Zielonej rozróżnia się dwie odmiany: **myszyniecką** (grubo ciętą, z przewagą
+wzorów geometrycznych) i **kadzidlańską** (drobno ciętą, roślinną). Wycinankarstwo
+kurpiowskie zostało w 2020 r. wpisane na **Krajową listę niematerialnego dziedzictwa
+kulturowego**.
+
+### Miodobranie Kurpiowskie
+
+Najgłośniejsze święto Myszyńca i jedna z największych imprez folklorystycznych w kraju.
+Organizowane **od 1976 roku** w **ostatni weekend sierpnia** przez Gminę Myszyniec,
+Regionalne Centrum Kultury Kurpiowskiej im. ks. Władysława Skierkowskiego oraz
+Towarzystwo Przyjaciół Myszyńca. Nawiązuje do **tradycji bartniczych** (leśnego
+pszczelarstwa) Puszczy Zielonej. Sobota to wydarzenia w Myszyńcu, a niedziela —
+zasadnicza część w kompleksie „Kurpiowska Kraina" w Wykrocie pod Myszyńcem.
+
+### Inne ważne wydarzenia regionu
+
+- **Niedziela Palmowa w Łysych** — słynny konkurs „Palma Kurpiowska" (od 1969 r.),
+  z paroma metrowymi palmami zdobionymi kwiatami z bibuły.
+- **Wesele Kurpiowskie w Kadzidle** — międzynarodowy festiwal i inscenizacja dawnego
+  obrzędu weselnego.
+- **Jarmark Kurpiowski im. Stanisława Sieruty w Myszyńcu** — msza w strojach ludowych,
+  barwny korowód i przegląd artystów, kapel oraz gawędziarzy.
+- **Bursztyn** — „złoto Kurpiów", od wieków obecny w strojach i biżuterii regionu.
+
+### Bazylika pw. Trójcy Przenajświętszej
+
+Neogotycki kościół to jeden z symboli Myszyńca i ważne miejsce kultu na Kurpiach.
+<!-- TODO: doprecyzować dane o bazylice (architekt, lata budowy, status bazyliki mniejszej) z wiarygodnym źródłem. -->
 
 ## Dobre do wiedzenia
 

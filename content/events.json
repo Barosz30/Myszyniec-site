@@ -2,21 +2,21 @@
   {
     "id": "miodobranie-2026",
     "title": "Miodobranie Kurpiowskie",
-    "start": "2026-08-23T11:00:00+02:00",
-    "end": "2026-08-23T20:00:00+02:00",
-    "location": "Myszyniec, plac przy bazylice",
-    "description": "Doroczne święto kultury kurpiowskiej: kapele ludowe, rękodzieło, regionalne przysmaki. TODO: potwierdzić dokładną datę i program u organizatora.",
+    "start": "2026-08-29T10:00:00+02:00",
+    "end": "2026-08-30T22:00:00+02:00",
+    "location": "Myszyniec (sob.) i Kurpiowska Kraina w Wykrocie (niedz.)",
+    "description": "Jedna z największych imprez folklorystycznych w Polsce (od 1976 r.): obrzęd miodobrania, kapele ludowe, konkurs rękodzieła im. Anny Kordeckiej, regionalne przysmaki. Organizatorzy: Gmina Myszyniec, RCKK i Towarzystwo Przyjaciół Myszyńca. TODO: potwierdzić dokładny program tegorocznej edycji u organizatora.",
     "category": "Kultura",
-    "url": "https://www.myszyniec.pl/"
+    "url": "https://www.rckkmyszyniec.pl/"
   },
   {
-    "id": "jarmark-kurpiowski-2026",
-    "title": "Jarmark produktów regionalnych",
-    "start": "2026-07-12T09:00:00+02:00",
-    "end": "2026-07-12T14:00:00+02:00",
-    "location": "Rynek / pl. Wolności, Myszyniec",
-    "description": "Stoiska z lokalnymi wyrobami, miodami i rękodziełem. Wpis przykładowy — uzupełnij realnym terminem.",
-    "category": "Społeczność"
+    "id": "jarmark-kurpiowski-sieruty-2026",
+    "title": "Jarmark Kurpiowski im. Stanisława Sieruty",
+    "start": "2026-07-12T10:00:00+02:00",
+    "location": "Myszyniec",
+    "description": "Cykliczny przegląd folkloru: msza w strojach ludowych, barwny korowód, występy artystów ludowych, kapel i gawędziarzy. TODO: potwierdzić dokładną datę tegorocznej edycji u organizatora (data poniżej jest orientacyjna).",
+    "category": "Kultura",
+    "url": "https://www.myszyniec.pl/"
   },
   {
     "id": "koncert-letni-2026",
