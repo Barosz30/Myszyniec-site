@@ -250,6 +250,12 @@ export default async function HomePage() {
               </p>
               <p className="mt-2 text-lg text-foreground">„Dobrygo dnia, ludkowie”</p>
               <p className="text-sm text-muted-foreground">= Dobrego dnia, ludzie</p>
+              <Link
+                href="/gwara-kurpiowska"
+                className="mt-4 inline-flex text-sm font-semibold text-primary underline"
+              >
+                Otwórz słownik gwary →
+              </Link>
             </div>
           </aside>
         </div>

@@ -1,0 +1,136 @@
+{
+  "entries": [
+    {
+      "id": "witajcie-u-nas",
+      "polish": "Witajcie u nas!",
+      "kurpie": "Witôjcie u nôs!",
+      "category": "powitania"
+    },
+    {
+      "id": "zostancie-z-bogiem",
+      "polish": "Zostańcie z Bogiem (do widzenia)",
+      "kurpie": "Ostańcie z Boziem",
+      "category": "powitania"
+    },
+    {
+      "id": "dobrego-dnia",
+      "polish": "Dobrego dnia, ludzie",
+      "kurpie": "Dobrygo dnia, ludkowie",
+      "category": "powitania"
+    },
+    {
+      "id": "co-u-was",
+      "polish": "Co tam u was słychać?",
+      "kurpie": "Co tam u wôs słychać?",
+      "category": "powitania"
+    },
+    {
+      "id": "piekny",
+      "polish": "piękny",
+      "kurpie": "psiekny",
+      "category": "codzienne"
+    },
+    {
+      "id": "bedzie",
+      "polish": "będzie",
+      "kurpie": "bańdzie",
+      "category": "codzienne"
+    },
+    {
+      "id": "dzis",
+      "polish": "dziś",
+      "kurpie": "ździś",
+      "category": "codzienne"
+    },
+    {
+      "id": "chodzi",
+      "polish": "chodzi",
+      "kurpie": "ździera",
+      "category": "codzienne"
+    },
+    {
+      "id": "dziewczyna",
+      "polish": "dziewczyna",
+      "kurpie": "dzióra",
+      "category": "codzienne"
+    },
+    {
+      "id": "chlop",
+      "polish": "chłop",
+      "kurpie": "chłop",
+      "category": "codzienne"
+    },
+    {
+      "id": "dom",
+      "polish": "dom",
+      "kurpie": "dōm",
+      "category": "codzienne"
+    },
+    {
+      "id": "woda",
+      "polish": "woda",
+      "kurpie": "wōda",
+      "category": "codzienne"
+    },
+    {
+      "id": "chleb",
+      "polish": "chleb",
+      "kurpie": "chléb",
+      "category": "codzienne"
+    },
+    {
+      "id": "wies",
+      "polish": "wieś",
+      "kurpie": "wies",
+      "category": "codzienne"
+    },
+    {
+      "id": "matka",
+      "polish": "matka",
+      "kurpie": "mōtka",
+      "category": "rodzina"
+    },
+    {
+      "id": "ojciec",
+      "polish": "ojciec",
+      "kurpie": "ôjciec",
+      "category": "rodzina"
+    },
+    {
+      "id": "dziecko",
+      "polish": "dziecko",
+      "kurpie": "dzieczię",
+      "category": "rodzina"
+    },
+    {
+      "id": "laka",
+      "polish": "łąka",
+      "kurpie": "łōka",
+      "category": "przyroda"
+    },
+    {
+      "id": "slonce",
+      "polish": "słońce",
+      "kurpie": "słōńce",
+      "category": "przyroda"
+    },
+    {
+      "id": "las",
+      "polish": "las",
+      "kurpie": "las",
+      "category": "przyroda"
+    },
+    {
+      "id": "miod",
+      "polish": "miód",
+      "kurpie": "miōd",
+      "category": "przyroda"
+    },
+    {
+      "id": "pszczola",
+      "polish": "pszczoła",
+      "kurpie": "pszczoła",
+      "category": "przyroda"
+    }
+  ]
+}

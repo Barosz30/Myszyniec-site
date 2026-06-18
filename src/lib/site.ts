@@ -50,6 +50,11 @@ export const NAV: NavItem[] = [
     description: "Historia, ciekawostki i podstawowe dane o naszej miejscowości.",
   },
   {
+    href: "/gwara-kurpiowska",
+    label: "Gwara kurpiowska",
+    description: "Słownik gwary kurpiowskiej z nagraniami wymowy.",
+  },
+  {
     href: "/newsy",
     label: "Newsy",
     description: "Co słychać w Myszyńcu i okolicy — najnowsze informacje.",
