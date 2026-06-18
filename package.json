@@ -12,7 +12,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "audio:kurpie": "python3 scripts/generate-kurpie-audio.py"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
